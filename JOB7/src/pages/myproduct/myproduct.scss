@@ -2,7 +2,6 @@ page-myproduct {
     ion-title {
         padding-top: 10px;
     }
-    
     ion-card {
         width: auto !important;
         display: inline-block;
@@ -15,20 +14,17 @@ page-myproduct {
             height: 150px;
         }
     }
-    
     .card-title {
         font-size: 1.4rem;
         margin: 0px;
         padding-bottom: 0px;
         text-transform: capitalize;
     }
-    
     .card-content {
         padding: 0px;
         padding-right: 8px;
         padding-left: 8px;
     }
-    
     .card.card-md {
         margin: 4px;
     }

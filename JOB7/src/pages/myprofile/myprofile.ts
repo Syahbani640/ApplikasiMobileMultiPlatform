@@ -21,22 +21,19 @@ export class MyprofilePage {
     'name': '',
     'email': ''
   }
-
   response: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private authProvider: AuthProvider,
+  constructor(public navCtrl: NavController, public navParams: NavParams,private authProvider: AuthProvider,
     private alertProvider: AlertProvider) {
-      //mengambil data user dari local storage
-      var user = JSON.parse(localStorage.getItem('user'));
-      this.user.name = user.name;
-      this.user.email = user.email;
+    //mengambil data user dari local storage
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.user.name = user.name;
+    this.user.email = user.email;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyprofilePage');
   }
-
   //fungsi yang menangani permintaan logout
   //ke auth provider sekaligus mendapatkan response
   //dari server

@@ -18,8 +18,8 @@ import { MyproductPage } from '../pages/myproduct/myproduct';
 import { FormproductPage } from '../pages/formproduct/formproduct';
 import { CovidinfoProvider } from '../providers/covidinfo/covidinfo';
 import { CovidinfoPage } from '../pages/covidinfo/covidinfo';
-import { SQLite } from '@ionic-native/sqlite';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
+import { SQLite } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProductfavoriteProvider } from '../providers/productfavorite/productfavorite';
 import { MyfavoritePage } from '../pages/myfavorite/myfavorite';
@@ -29,7 +29,6 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
-
 
 @NgModule({
   declarations: [
@@ -44,7 +43,7 @@ import { FilePath } from '@ionic-native/file-path';
     MyprofilePage,
     MyfavoritePage,
     SearchPage,
-    DetailproductPage,
+    DetailproductPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +63,7 @@ import { FilePath } from '@ionic-native/file-path';
     MyprofilePage,
     MyfavoritePage,
     SearchPage,
-    DetailproductPage,
+    DetailproductPage
   ],
   providers: [
     StatusBar,

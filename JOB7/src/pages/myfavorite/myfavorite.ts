@@ -16,7 +16,6 @@ import { AlertProvider } from '../../providers/alert/alert';
 })
 export class MyfavoritePage {
   products: any[] = [];
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private productfavoriteProvider: ProductfavoriteProvider,
     private alertProvider: AlertProvider) {
@@ -27,19 +26,17 @@ export class MyfavoritePage {
     console.log('ionViewDidLoad MyfavoritePage');
     this.getAllFavorite();
   }
-
   //fungsi untuk memanggil fungsi getAll pada provider
   getAllFavorite(){
     this.productfavoriteProvider.getAll().then(
       (result:any[]) =>{
         this.products = result;
       },
-      error => {
-        console.log("errornya: "+error);
-      }
+    error => {
+      console.log("errornya: "+error);
+    }
     )
   }
-
   //fungsi untuk memanggil fungsi hapus data diprovider
   remove(id:number){
     this.productfavoriteProvider.remove(id).then(

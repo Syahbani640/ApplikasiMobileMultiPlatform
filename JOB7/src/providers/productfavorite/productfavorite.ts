@@ -1,4 +1,4 @@
-
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DatabaseProvider } from '../database/database';
 import { SQLiteObject } from '@ionic-native/sqlite';
@@ -15,7 +15,6 @@ export class ProductfavoriteProvider {
   constructor(private databaseProvider: DatabaseProvider) {
     console.log('Hello ProductfavoriteProvider Provider');
   }
-
   public insert(product) {
     return this.databaseProvider.getDB()
     .then((db: SQLiteObject) => {
@@ -23,11 +22,10 @@ export class ProductfavoriteProvider {
       let params = [product.id, product.name, product.price, product.category, product.image];
       return db.executeSql(sql, params)
       .then((s) => console.log(s+'Product berhasilditambahkan!'))
-      .catch(e => console.error('Product gagal ditambahkan:', e));
+      .catch(e => console.error('Product gagal ditambahkan:',e));
     })
     .catch((e) => console.error(e));
   }
-  
   public remove(id: number) {
     return this.databaseProvider.getDB().then((db: SQLiteObject) => {
       let sql = 'DELETE FROM myfavorite WHERE id=?';
@@ -44,7 +42,6 @@ export class ProductfavoriteProvider {
     })
     .catch((e) => console.error(e));
   }
-  
   public getById(id:number){
     return this.databaseProvider.getDB().then(
       (db: SQLiteObject)=> {
@@ -62,7 +59,6 @@ export class ProductfavoriteProvider {
       }
     )
   }
-    
   public getAll() {
     return this.databaseProvider.getDB()
     .then((db: SQLiteObject) => {
@@ -86,5 +82,3 @@ export class ProductfavoriteProvider {
     .catch((e) => console.error(e));
   }
 }
-
-

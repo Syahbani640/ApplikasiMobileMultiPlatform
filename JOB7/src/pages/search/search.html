@@ -6,8 +6,9 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-searchbar type="text" color="light" placeholder="Cari makan apa?" clearInput autofocus (keyup)="search($event)">
-  </ion-searchbar>
+    <ion-searchbar type="text" color="light" placeholder="Cari makan apa?"
+    clearInput autofocus (keyup)="search($event)">
+ </ion-searchbar>
   </ion-navbar>
 </ion-header>
 
@@ -23,4 +24,5 @@
       <p>{{ p.price | number : fractionSize}}</p>
     </ion-item>
   </ion-list>
+
 </ion-content>

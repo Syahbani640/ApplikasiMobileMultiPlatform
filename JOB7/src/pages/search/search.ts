@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
-//import { AlertProvider } from '../../providers/alert/alert';
+import { AlertProvider } from '../../providers/alert/alert';
 import { DetailproductPage } from '../detailproduct/detailproduct';
 
 /**
@@ -16,24 +16,17 @@ import { DetailproductPage } from '../detailproduct/detailproduct';
   templateUrl: 'search.html',
 })
 export class SearchPage {
-
   products=[];
-
-  constructor(public navCtrl: NavController,
-    private productProvider: ProductProvider,
-    //private alertProvider: AlertProvider
-    ) {
+  constructor(public navCtrl: NavController, private productProvider: ProductProvider,
+    private alertProvider: AlertProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
-
-
   search(event) {
     this.products = [];
     let searchQuery = event.target.value;
-    
     if (searchQuery == "") {
       this.products = [];
     }
@@ -48,13 +41,8 @@ export class SearchPage {
       )
     }
   }
-
-  // openDetail(id) {
-  //   this.alertProvider.showToast("Buatlah peritah untuk membuka detail produk " + id + " disini");
-  // }
-  
-  openDetail(id) {
-    this.navCtrl.push(DetailproductPage, {id:id});
+  openDetail(id:number){
+    this.navCtrl.push(DetailproductPage,{id:id})
   }
 
 }

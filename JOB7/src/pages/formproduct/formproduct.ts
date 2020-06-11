@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, Events, ActionSheetController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events, ActionSheetController, LoadingController } from
+'ionic-angular';
 import { Product } from '../../models/product/product-model';
 import { ProductProvider } from '../../providers/product/product';
 import { AlertProvider } from '../../providers/alert/alert';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FilePath } from '@ionic-native/file-path';
 import { File, FileEntry } from '@ionic-native/file';
-
-
 /**
  * Generated class for the FormproductPage page.
  *
@@ -34,16 +33,10 @@ export class FormproductPage {
   //deklarasi variabel array untuk menampung hasil category
   //dari end point
   category=[];
-
-  //deklarasi image
   imageUri:any;
   imageFileName:any;
 
-
-
-
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl : ViewController,
     private productProvider: ProductProvider,
     private alertProvider: AlertProvider,
@@ -52,9 +45,8 @@ export class FormproductPage {
     private filePath: FilePath,
     private file: File,
     private actionSheetCtrl: ActionSheetController,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl : LoadingController) {
   }
-
   ionViewDidLoad() {
     this.category=[];
     this.showCategory();
@@ -70,8 +62,6 @@ export class FormproductPage {
       this.showSelectedProduct(this.navParams.data.id)
     }
   }
-
-
   //fungsi untuk mengambil categori dari end point
   showCategory() {
     this.productProvider.getCategoryProduct().subscribe(
@@ -84,7 +74,6 @@ export class FormproductPage {
       }
     )
   }
-  
   //fungsi untuk mengambil 1 data yang dipilih
   //berdasarkan id yang dilewatkan
   showSelectedProduct(id:number){
@@ -97,12 +86,11 @@ export class FormproductPage {
         this.product.categori_id = data.kategori.id;
         this.product.id = data.id;
         if(data.active==2)
-          this.product.active = true;
+        this.product.active = true;
         this.product.image = data.image;
       }
     );
   }
-  
   //fungsi untuk menangani aksi simpan dan update
   save(aksi:any){
     this.product.image = null;
@@ -119,43 +107,41 @@ export class FormproductPage {
             //jika ada gambar yang dipilih
             //upload image
             this.productProvider.uploadImage(this.imageFileName,
-            this.imageUri, this.response.data.id).then(
-              res => {
-                console.log('upload result' + res);
-                //untuk mengirim/publish event bahwa simpan berhasil
-                this.event.publish('save:success');
-              },
-              error => {
-                console.log('upload error :' + error);
-                //untuk mengirim/publish event bahwa simpan berhasil
-                this.event.publish('save:success');
-              }
-            );
+              this.imageUri, this.response.data.id).then(
+                res => {
+                  console.log('upload result' + res);
+                  //untuk mengirim/publish event bahwa simpan berhasil
+                  this.event.publish('save:success');
+                },
+                error => {
+                  console.log('upload error :' + error);
+                  //untuk mengirim/publish event bahwa simpan berhasil
+                  this.event.publish('save:success');
+                }
+              );
+            }
+            this.alertProvider.showToast("Simpan data berhasil");
+            //untuk menutup form product
+            this.viewCtrl.dismiss();
+          },
+          error => {
+            this.alertProvider.showToast("Simpan data gagal");
           }
-
-          this.alertProvider.showToast("Simpan data berhasil");
-          //untuk mengirim/publish event bahwa simpan berhasil
-          this.event.publish('save:success');
-          //untuk menutup form product
-          this.viewCtrl.dismiss();
-        },
-        error => {
-          this.alertProvider.showToast("Simpan data gagal");
-        }
       );
-      //jika nilai aksi='Update' maka aksi update data yang dijalankan
+    //jika nilai aksi='Update' maka aksi update data yang dijalankan
     } else if (aksi=="Update"){
-        this.productProvider.updateProduct(this.product).subscribe(
-          result => {
-            this.response = result;
-            //jika tidak ada image yang dipilih
-            if (this.imageUri == null) {
-              //untuk mengirim/publish event bahwa update berhasil
-              this.event.publish('save:success');
-            } else {
-              //jika ada image yang dipilih
-              //upload image
-              this.productProvider.uploadImage(this.imageFileName,this.imageUri, this.response.data.id).then(
+      this.productProvider.updateProduct(this.product).subscribe(
+        result => {
+          this.response = result;
+          //jika tidak ada image yang dipilih
+          if (this.imageUri == null) {
+            //untuk mengirim/publish event bahwa update berhasil
+            this.event.publish('save:success');
+          } else {
+            //jika ada image yang dipilih
+            //upload image
+            this.productProvider.uploadImage(this.imageFileName,
+              this.imageUri, this.response.data.id).then(
                 res => {
                   console.log('upload result ' + res);
                   //untuk mengirim/publish event bahwa update berhasil
@@ -168,10 +154,8 @@ export class FormproductPage {
                 }
               );
             }
-            
             this.alertProvider.showToast("Update data berhasil");
-            //untuk mengirim/publish event bahwa update berhasil
-            this.event.publish('save:success');
+            
             //untuk menutup form product
             this.viewCtrl.dismiss();
           },
@@ -179,10 +163,9 @@ export class FormproductPage {
             this.alertProvider.showToast("Update data gagal");
           }
         );
+      }
     }
-  }
 
-  //fungsi membuka kamera atau gellery
   getImage(sourceType) {
     let loader = this.loadingCtrl.create({
       content: "Please wait..."
@@ -205,10 +188,10 @@ export class FormproductPage {
       .then(filePath => {
         this.file.resolveLocalFilesystemUrl(filePath).then(fileInfo=>{
           let files = fileInfo as FileEntry;
-            files.file(success => {
-              //disini nama filenya didapatkan
-              this.imageFileName = success.name;
-            });
+          files.file(success => {
+            //disini nama filenya didapatkan
+            this.imageFileName = success.name;
+          });
         }, err => {
           console.log(err);
           throw err;
@@ -221,30 +204,29 @@ export class FormproductPage {
       loader.dismiss();
     });
   }
-
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Pilih sumber gambar',
       buttons: [
-      {
-        text: 'Ambil foto',
-        handler: () => {
-          this.getImage(this.camera.PictureSourceType.CAMERA);
+        {
+          text: 'Ambil foto',
+          handler: () => {
+            this.getImage(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Ambil dari galeri',
+          handler: () => {
+            this.getImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Batal',
+          role: 'cancel'
         }
-      },
-      {
-        text: 'Ambil dari galeri',
-        handler: () => {
-          this.getImage(this.camera.PictureSourceType.PHOTOLIBRARY);
-        }
-      },
-      {
-        text: 'Batal',
-        role: 'cancel'
-      }
       ]
     });
     actionSheet.present();
   }
-
 }
+

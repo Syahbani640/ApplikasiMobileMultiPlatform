@@ -6,19 +6,19 @@
 -->
 <ion-header>
   <ion-navbar>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-title>My Product</ion-title>
-          </ion-col>
-          <ion-col col-2 text-right>
-            <button ion-button clear icon-only (click)="showInputForm()" style="padding: 0px !important">
-              <ion-icon name='add-circle' color="primary"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title>My Product</ion-title>
+        </ion-col>
+        <ion-col col-2 text-right>
+          <button ion-button clear icon-only (click)="showInputForm()" style="padding: 0px !important">
+            <ion-icon name='add-circle' color="primary"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -38,7 +38,6 @@
             Rp. {{ p.price }}
           </p>
         </ion-card-content>
-      
         <ion-row style="background-color: aliceblue;">
           <ion-col col-6 text-center>
             <button ion-button clear icon-only (click)="showUpdateForm(p.id)">
@@ -54,4 +53,5 @@
       </ion-card>
     </ion-col>
   </ion-row>
+
 </ion-content>

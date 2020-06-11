@@ -19,23 +19,26 @@
     </ion-grid>
   </ion-toolbar>
 </ion-header>
-<ion-content padding fullscreen (ionScroll)="onPageScroll($event)" [class.transition]="transition">
+
+<ion-content fullscreen (ionScroll)="onPageScroll($event)" [class.transition]="transition">
   <div class="cover" padding class="ion-content">
     <ion-slides *ngIf="slider && slider.length" autoplay="5000" loop="true" speed="500" pager>
-      <ion-slide *ngFor="let slide of slider" class="slide-background" [ngStyle]="{ 'background': 'url(' + slide.imageUrl + ')'}"></ion-slide>
+      <ion-slide *ngFor="let slide of slider" class="slide-background"[ngStyle]="{ 'background': 'url(' + slide.imageUrl + ')'}"> 
+      </ion-slide>
     </ion-slides>
     <p class="title-kategori">Kategori</p>
     <ion-scroll scrollX="true" class="scroll">
-      <button class="btn-rounded" ion-button color="primary" *ngFor="let cat of category" (click)="showProductByCategory(cat.id)">{{ cat.nama }}</button>
+      <button class="btn-rounded" ion-button color="primary" *ngFor="let cat of category" (click)="showProductByCategory(cat.id)">{{ cat.nama }}
+      </button>
     </ion-scroll>
-
     <ion-row>
-      <ion-col class="ion-card" col-6 inset *ngFor="let p of products; let i=index" style="padding: 0px !important">
+      <ion-col class="ion-card" col-6 inset *ngFor="let p of products; let
+      i = index " style="padding: 0px !important">
         <ion-card>
           <img src="https://ecommerce.jaroji.web.id/uploads/product/images/{{ p.image }}" />
           <ion-card-content>
             <ion-card-title>
-              {{ p.name.length > 20 ? p.name.substr(0,20)+'...':p.name }}
+              {{ p.name.length > 20 ? p.name.substr(0,20)+'...': p.name }}
             </ion-card-title>
             <span class="kategori">
               {{ p.kategori.nama }}
@@ -64,15 +67,14 @@
         </ion-card>
       </ion-col>
     </ion-row>
-
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
     <h3>Selamat datang di e-commerce</h3>
-   <h2>{{user.name}}</h2>
-   <p>Email : <i>{{user.email}}</i></p>
-   <br><br><br><br><br><br><br>
-   </div>
-   
-</ion-content>
+    <h2>{{user.name}}</h2>
+    <p>Email : <i>{{user.email}}</i></p>
+    
+  </div>
+ </ion-content>
+
